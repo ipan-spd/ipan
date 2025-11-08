@@ -2,7 +2,7 @@ const axios = require('axios');
 const { Client, MessageMedia } = require('whatsapp-web.js');
 
 // Konfigurasi
-const API_BOTCHAX = 'YOUR_API_KEY'; // Ganti dengan API key Anda
+const API_BOTCHAX = 'herokimakkk'; // Ganti dengan API key Anda
 const CONVERSATIONS = {};
 
 // Inisialisasi client WhatsApp
