@@ -13,23 +13,9 @@ client.on('ready', () => {
     console.log('Bot WhatsApp siap!');
 });
 
-// Utility class untuk emoji dan teks (bisa disesuaikan)
-class Emoji {
-    constructor() {
-        this.proses = "⏳"; // Emoji untuk status "sedang memproses"
-    }
-
-    async get_costum_text() {
-        // Simulasi teks custom yang berbeda
-        return ["Teks 1", "Teks 2", "Teks 3", "Teks 4", "Memproses..."];
-    }
-}
-
-const em = new Emoji();
-
 // Fungsi untuk mendapatkan respons dari AI
 async function getAIResponse(conversation) {
-    const url = 'https://api.botcahx.eu.org/api/search/openai-custom';
+    const url = 'https://api.botcahx.eu.org/api/search/openai-custom'; // Pastikan URL ini benar
     try {
         const response = await axios.post(url, {
             message: conversation,
@@ -61,10 +47,6 @@ client.on('message', async message => {
         ];
     }
 
-    // Status "sedang memproses"
-    const proses_ = await em.get_costum_text();
-    const pros = await message.reply(`${em.proses} **${proses_[4]}**`);
-
     try {
         // Tambahkan pesan user ke percakapan
         CONVERSATIONS[user_id].push({ role: "user", content: question });
@@ -80,9 +62,6 @@ client.on('message', async message => {
     } catch (error) {
         console.error('Terjadi kesalahan:', error);
         await message.reply('Maaf, terjadi kesalahan saat memproses pesan Anda.');
-    } finally {
-        // Hapus status "sedang memproses"
-        await pros.delete();
     }
 });
 
